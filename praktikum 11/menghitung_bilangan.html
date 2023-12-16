@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penjumlahan Bilangan</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #container {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input {
+            margin-bottom: 5px;
+            padding: 8px;
+            width: 200px;
+        }
+
+        #hasilJumlah {
+            border: 1.4px solid black;
+            border-radius: 5px;
+            padding: 8px;
+            margin-top: 10px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <h1>Menghitung Bilangan Penjumlahan</h1>
+
+        <label for="bilangan1"></label>
+        <input type="number" id="bilangan1" placeholder="Masukkan Bilangan 1" onChange="hitungJumlah()">
+
+        <p>+</p>
+
+        <label for="bilangan2"></label>
+        <input type="number" id="bilangan2" placeholder="Masukkan Bilangan 2" onChange="hitungJumlah()">
+
+        <div class="hasil">
+            <p>=</p>
+            <p id="hasilJumlah">hasil</p>
+        </div>
+        
+    </div>
+
+    <script>
+        function hitungJumlah() {
+            var bilangan1 = document.getElementById('bilangan1').value;
+            var bilangan2 = document.getElementById('bilangan2').value;
+
+            // Konversi input menjadi angka
+            bilangan1 = parseFloat(bilangan1) || 0;
+            bilangan2 = parseFloat(bilangan2) || 0;
+
+            // Hitung jumlah
+            var jumlah = bilangan1 + bilangan2;
+
+            // Tampilkan hasil
+            document.getElementById('hasilJumlah').innerHTML = '' + jumlah;
+        }
+    </script>
+
+</body>
+</html>

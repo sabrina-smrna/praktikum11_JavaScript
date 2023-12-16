@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menghitung Biaya Parkir di STTNF</title>
+
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #container {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input {
+            margin-bottom: 10px;
+            padding: 8px;
+        }
+    </style>
+    
+</head>
+<body>
+
+    <div id="container">
+        <h1>Biaya Parkir STTNF</h1>
+
+        <label for="jamMasuk">Jam Masuk (format 24 jam):</label>
+        <input type="text" id="jamMasuk" placeholder="Contoh: 12:20" onchange="hitungBiayaParkir()">
+
+        <label for="jamKeluar">Jam Keluar (format 24 jam):</label>
+        <input type="text" id="jamKeluar" placeholder="Contoh: 17:53" onchange="hitungBiayaParkir()">
+
+
+        <p id="hasilBiayaParkir"></p>
+    </div>
+
+    <script>
+        function hitungBiayaParkir() {
+            var jamMasuk = document.getElementById('jamMasuk').value;
+            var jamKeluar = document.getElementById('jamKeluar').value;
+
+            // Untuk memisahkan jam dan menit
+            var masuk = jamMasuk.split(':');
+            var keluar = jamKeluar.split(':');
+
+            // Mengkonversi ke menit
+            var menitMasuk = parseInt(masuk[0]) * 60 + parseInt(masuk[1]);
+            var menitKeluar = parseInt(keluar[0]) * 60 + parseInt(keluar[1]);
+
+            // Menghitung selisih jam
+            var selisihJam = Math.ceil((menitKeluar - menitMasuk) / 60);
+
+            // Biaya parkir
+            var biayaParkir = 3000; // Biaya 2 jam pertama
+            var biayaTambahan = 1000; // Biaya tambahan per jam
+
+            // Hitung biaya tambahan
+            if (selisihJam > 2) {
+                biayaParkir += (selisihJam - 2) * biayaTambahan;
+            }
+
+            // Tampilkan hasil
+            document.getElementById('hasilBiayaParkir').innerHTML = 'Biaya Parkir : ' + biayaParkir + ' Rupiah';
+        }
+    </script>
+
+</body>
+</html>
